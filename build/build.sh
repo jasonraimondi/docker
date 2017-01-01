@@ -11,3 +11,8 @@ cd $DIR/php
 docker build -t jasonraimondi/php:$1 -t jasonraimondi/php:latest .
 docker push jasonraimondi/php:$1
 docker push jasonraimondi/php:latest
+
+cd $DIR/mailcatcher
+docker build -t jasonraimondi/mailcatcher:$1 -t jasonraimondi/mailcatcher:latest .
+docker push jasonraimondi/mailcatcher:$1
+docker push jasonraimondi/mailcatcher:latest

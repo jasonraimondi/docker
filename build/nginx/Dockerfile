@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Jason Raimondi
+MAINTAINER Jason Raimondi <jason@raimondi.us>
 
 RUN apt-get update \
     && apt-get install -y nginx \

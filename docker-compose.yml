@@ -14,19 +14,28 @@ services:
      - ./application:/var/www/html
     networks:
      - appnet
-  # redis:
-  #   image: redis:alpine
-  #   networks:
-  #    - appnet
+  mailcatcher:
+    image: jasonraimondi/mailcatcher:latest
+    ports:
+     - "1080:1080"
+     - "1025:1025"
+    networks:
+     - appnet
+  redis:
+    image: redis:alpine
+    networks:
+     - appnet
   db:
-    image: mysql:5.7
+    image: percona:5.7
+    ports:
+     - "33306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
     volumes:
-     - data:/var/lib/mysql
+     - ./data:/var/lib/mysql
     networks:
      - appnet
 networks:
