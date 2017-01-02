@@ -21,8 +21,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD php-fpm.conf /etc/php/7.1/fpm/php-fpm.conf
-ADD www.conf /etc/php/7.1/fpm/pool.d/www.conf
+ADD ./etc/php/7.1/fpm/php.ini /etc/php/7.1/fpm/php.ini
+ADD ./etc/php/7.1/fpm/php-fpm.ini /etc/php/7.1/fpm/php-fpm.ini
+ADD ./etc/php/7.1/fpm/pool.d/www.conf /etc/php/7.1/fpm/pool.d/www.conf
 
 EXPOSE 9000
 CMD ["php-fpm7.1"]
