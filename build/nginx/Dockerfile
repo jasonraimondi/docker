@@ -11,10 +11,8 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && rm -rf /var/www/html
 
-COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
-
+ADD  ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./etc/nginx/conf.d/ /etc/nginx/conf.d
-ADD default /etc/nginx/sites-available/default
 
 EXPOSE 80
 CMD ["nginx"]
