@@ -8,36 +8,40 @@ services:
      - ./application:/var/www/html
     networks:
      - appnet
+  # yarn:
+  #   image: jasonraimondi/yarn:latest
+  #   volumes:
+  #    - ./application:/var/www/html
   php:
-    image: jasonraimondi/php:latest
+    image: jasonraimondi/php:php71
     volumes:
      - ./application:/var/www/html
     networks:
      - appnet
-  mailcatcher:
-    image: jasonraimondi/mailcatcher:latest
-    ports:
-     - "1080:1080"
-     - "1025:1025"
-    networks:
-     - appnet
-  redis:
-    image: redis:alpine
-    networks:
-     - appnet
-  db:
-    image: percona:5.7
-    ports:
-     - "33306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: secret
-    volumes:
-     - ./data:/var/lib/mysql
-    networks:
-     - appnet
+  # mailcatcher:
+  #   image: jasonraimondi/mailcatcher:latest
+  #   ports:
+  #    - "1080:1080"
+  #    - "1025:1025"
+  #   networks:
+  #    - appnet
+  # redis:
+  #   image: redis:alpine
+  #   networks:
+  #    - appnet
+  # db:
+  #   image: percona:5.7
+  #   ports:
+  #    - "33306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: secret
+  #     MYSQL_DATABASE: homestead
+  #     MYSQL_USER: homestead
+  #     MYSQL_PASSWORD: secret
+  #   volumes:
+  #    - ./data:/var/lib/mysql
+  #   networks:
+  #    - appnet
 networks:
   appnet:
     driver: "bridge"
