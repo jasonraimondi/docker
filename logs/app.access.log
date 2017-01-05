@@ -1,0 +1,1 @@
+172.21.0.1 - - [05/Jan/2017:23:03:34 +0000] GET http://localhost/ HTTP/1.1 200 24607 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36" time="0.008" connect_time="0.003" header_time="0.007" response_time="0.008"
