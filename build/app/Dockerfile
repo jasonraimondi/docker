@@ -17,24 +17,21 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
         libmcrypt-dev \
         zlib1g-dev \
         curl \
+        mysql-client \
         sqlite3 \
         supervisor \
         git \
-        netcat \
-        vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/www/html
 
-RUN docker-php-ext-install \
-        intl \
+RUN docker-php-ext-install tokenizer \
         mbstring \
         mcrypt \
-        pcntl \
+        opcache \
         pdo \
         pdo_mysql \
-        zip \
-        opcache \
+        zip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 

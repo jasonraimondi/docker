@@ -11,21 +11,21 @@ services:
      - ./application:/var/www/html
     networks:
      - appnet
-  mailcatcher:
-    image: jasonraimondi/mailcatcher:latest
-    ports:
-     - "1080:1080"
-     - "1025:1025"
-    networks:
-     - appnet
+  # mailcatcher:
+  #   image: jasonraimondi/mailcatcher:latest
+  #   ports:
+  #    - "1080:1080"
+  #    - "1025:1025"
+  #   networks:
+  #    - appnet
   redis:
     image: redis:alpine
     networks:
      - appnet
-  mysql:
+  db:
     image: percona:5.7
     ports:
-     - "33306:3306"
+     - "33307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: homestead
