@@ -31,6 +31,7 @@ RUN docker-php-ext-install tokenizer \
         mbstring \
         mcrypt \
         opcache \
+        exif \
         pdo \
         pdo_mysql \
         zip
@@ -50,7 +51,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 
 COPY ./etc/supervisord.conf /etc/supervisord.conf
 
-# COPY ./etc/crontab /etc/crontab
+COPY ./var/crontab.txt /var/crontab.txt
+RUN crontab /var/crontab.txt
+RUN chmod 600 /etc/crontab
 
 COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./etc/nginx/conf.d/ /etc/nginx/conf.d
