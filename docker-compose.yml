@@ -1,25 +1,26 @@
 version: '2'
 services:
   app:
+    build: ./build/app
     image: jasonraimondi/app:latest
     ports:
-      - "80:80"
-      - "443:443"
-      - "9001:9000"
+      - "8080:80"
+      - "444:443"
+      - "9009:9000"
     volumes:
-     - ./logs:/var/log/nginx
+     - ./logs:/var/log
      - ./application:/var/www/html
     networks:
      - appnet
-  # mailcatcher:
-  #   image: jasonraimondi/mailcatcher:latest
-  #   ports:
-  #    - "1080:1080"
-  #    - "1025:1025"
-  #   networks:
-  #    - appnet
+  mailcatcher:
+    image: jasonraimondi/mailcatcher:latest
+    ports:
+     - "1080:1080"
+     - "1025:1025"
+    networks:
+     - appnet
   redis:
-    image: redis:alpine
+    image: redis:latest
     networks:
      - appnet
   db:
