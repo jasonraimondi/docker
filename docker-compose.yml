@@ -19,6 +19,12 @@ services:
      - "1025:1025"
     networks:
      - appnet
+  yarn:
+    image: jasonraimondi/yarn:latest
+    volumes:
+     - ./application:/var/www/html
+    networks:
+     - appnet
   redis:
     image: redis:latest
     networks:
