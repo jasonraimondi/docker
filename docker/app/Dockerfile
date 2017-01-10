@@ -36,9 +36,6 @@ RUN docker-php-ext-install tokenizer \
         pdo_mysql \
         zip
 
-# RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-#     && docker-php-ext-install imap
-
 RUN mkdir -p /usr/include \
     && docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd
