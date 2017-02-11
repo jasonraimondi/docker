@@ -2,23 +2,39 @@ version: '2'
 services:
   php:
     build: ./docker/php
-    # image: jasonraimondi/php:latest
-    # ports:
-      # - "8080:80"
+    image: jasonraimondi/php:7.1-fpm
     volumes:
-    #  - ./logs:/var/log
+     - ./logs/php:/var/log
      - ./application:/var/www/html
     networks:
      - appnet
   nginx:
     build: ./docker/nginx
-    # image: jasonraimondi/nginx:latest
+    image: jasonraimondi/nginx:11.1
     ports:
-      - "8080:80"
-      - "444:443"
+      - "80:80"
+      - "443:443"
     volumes:
-    #  - ./logs:/var/log
+     - ./logs/nginx:/var/log
      - ./application:/var/www/html
+    networks:
+     - appnet
+  cron:
+    build: ./docker/cron
+    image: jasonraimondi/cron:latest
+    volumes:
+     - ./logs/cron:/var/log
+     - ./application:/var/www/html
+    networks:
+     - appnet
+  mysql:
+    image: jasonraimondi/percona:5.7
+    ports:
+     - "33307:3306"
+    env_file: environment
+    volumes:
+     - ./logs/mysql:/var/log    
+     - ./database:/var/lib/mysql
     networks:
      - appnet
   # mailcatcher:
@@ -36,19 +52,6 @@ services:
   #    - appnet
   # redis:
   #   image: redis:latest
-  #   networks:
-  #    - appnet
-  # db:
-  #   image: percona:5.7
-  #   ports:
-  #    - "33307:3306"
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: secret
-  #     MYSQL_DATABASE: homestead
-  #     MYSQL_USER: homestead
-  #     MYSQL_PASSWORD: secret
-  #   volumes:
-  #    - ./data:/var/lib/mysql
   #   networks:
   #    - appnet
 networks:
