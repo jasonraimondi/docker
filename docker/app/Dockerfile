@@ -2,27 +2,19 @@ FROM php:7.1-fpm
 
 MAINTAINER Jason Raimondi <jason@raimondi.us>
 
+ENV TERM xterm
+
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
     && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y \
-        ca-certificates \
-        nginx \
-        pkg-config \
-        curl \
-        cron \
-        supervisor \
-        git \
-        vim
-
-RUN apt-get install -y \
+        ca-certificates nginx pkg-config curl cron supervisor git vim \
+    && apt-get install -y \
         libfcgi-dev libfcgi0ldbl libjpeg62-turbo-dbg libmcrypt-dev \
         libssl-dev libc-client2007e libc-client2007e-dev libxml2-dev \
         libbz2-dev libcurl4-openssl-dev libjpeg-dev libpng12-dev \
         libfreetype6-dev libkrb5-dev libpq-dev libxml2-dev libxslt1-dev \
-        libc-client-dev \
-    && apt-get install -y \
-        mysql-client sqlite3 \
+        libc-client-dev mysql-client sqlite3 \
     && apt-get clean
 
 RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a
