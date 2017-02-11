@@ -1,4 +1,4 @@
-FROM nginx:11.1
+FROM nginx:latest
 
 RUN echo 'deb http://ftp.debian.org/debian jessie-backports main' | tee /etc/apt/sources.list.d/backports.list \
     && apt-get update \
